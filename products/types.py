@@ -1,17 +1,16 @@
-import typing
-import strawberry
+import strawberry_django
 from categories.types import SubCategoryType
 from tags.types import TagType
-from datetime import datetime
-
-@strawberry.type
+from strawberry import auto
+from .models import Product
+@strawberry_django.type(Product)
 class ProductType:
-    title: str
-    description: str
-    price: float
+    title: auto
+    description: auto
+    price: auto
     category: "SubCategoryType"
-    stock_quantity: int
-    image_url: str
-    tags: ["TagType"]
-    created_at: datetime
-    updated_at: datetime
+    stock_quantity: auto
+    image_url: auto
+    tags: list[TagType]
+    created_at: auto
+    updated_at: auto

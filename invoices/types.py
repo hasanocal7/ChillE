@@ -1,11 +1,9 @@
-import typing
-import strawberry
-from orders.types import OrderType
-from datetime import datetime
-
-@strawberry.type
+import strawberry_django
+from strawberry import auto
+from .models import Invoice
+@strawberry_django.type(Invoice)
 class InvoiceType:
     order = "OrderType"
-    invoice_number: str
-    invoice_date: datetime
-    invoice_amount: float
+    invoice_number: auto
+    invoice_date: auto
+    invoice_amount: auto

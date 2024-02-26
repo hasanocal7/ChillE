@@ -1,11 +1,12 @@
-import typing
-import strawberry
+from .models import Stock
+from strawberry import auto
+import strawberry_django
 from products.types import ProductType
 from warehouses.types import WarehouseType
 
-@strawberry.type
+@strawberry_django.type(Stock)
 class StockType:
     product: "ProductType"
-    quantity: int
-    min_quantity_level: int
+    quantity: auto
+    min_quantity_level: auto
     warehouse: "WarehouseType"

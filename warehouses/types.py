@@ -1,7 +1,8 @@
-import typing
-import strawberry
+from strawberry import auto
+import strawberry_django
+from .models import Warehouse
 
-@strawberry.type
+@strawberry_django.type(Warehouse)
 class WarehouseType:
-    name: str
-    address: str
+    name: auto
+    address: auto

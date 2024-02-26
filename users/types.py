@@ -1,11 +1,12 @@
-import typing
-import strawberry
+import strawberry_django
+from strawberry import auto
+from .models import Account
 
-@strawberry.type
+@strawberry_django.type(Account)
 class AccountType:
-    username: str
-    email: str
-    password: str
-    fullname: str
-    phonenumber: str
-    address: str
+    username: auto
+    email: auto
+    password: auto
+    fullname: auto
+    phonenumber: auto
+    address: auto

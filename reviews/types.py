@@ -1,13 +1,13 @@
-import typing
-import strawberry
-from products.types import ProductType
+from .models import Review
+import strawberry_django
+from strawberry import auto
 from users.types import AccountType
-from datetime import datetime
+from products.types import ProductType
 
-@strawberry.type
+@strawberry_django.type(Review)
 class ReviewType:
     user: "AccountType"
-    rating: int
-    comment: str
+    rating: auto
+    comment: auto
     product: "ProductType"
-    created_at: datetime
+    created_at: auto

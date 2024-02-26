@@ -1,11 +1,11 @@
-import typing
-import strawberry
-from datetime import date
+import strawberry_django
+from .models import DiscountCoupon
+from strawberry import auto
 
-@strawberry.type
+@strawberry_django.type(DiscountCoupon)
 class DiscountCouponType:
-    code: str
-    discount_rate: float
-    start_date: date
-    end_date: date
-    min_order_amount: float
+    code: auto
+    discount_rate: auto
+    start_date: auto
+    end_date: auto
+    min_order_amount: auto

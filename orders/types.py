@@ -1,12 +1,11 @@
-import typing
-import strawberry
+import strawberry_django
 from users.types import AccountType
-from datetime import datetime
-
-@strawberry.type
+from .models import Order
+from strawberry import auto
+@strawberry_django.type(Order)
 class OrderType:
     user: "AccountType"
-    order_date: datetime
-    delivery_address: str
-    delivery_phone_number: str
-    shipping_status: str
+    order_date: auto
+    delivery_address: auto
+    delivery_phone_number: auto
+    shipping_status: auto

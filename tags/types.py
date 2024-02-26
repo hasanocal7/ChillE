@@ -1,6 +1,7 @@
-import typing
-import strawberry
+from strawberry import auto
+import strawberry_django
+from .models import Tag
 
-@strawberry.type
+@strawberry_django.type(Tag)
 class TagType:
-    name: str
+    name: auto

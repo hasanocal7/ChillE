@@ -1,12 +1,12 @@
-import typing
-import strawberry
+import strawberry_django
 from orders.types import OrderType
-from datetime import datetime
+from .models import Payment
+from strawberry import auto
 
-@strawberry.type
+@strawberry_django.type(Payment)
 class PaymentType:
     order: "OrderType"
-    payment_type: str
-    amount: float
-    process_ID: str
-    payment_date: datetime
+    payment_type: auto
+    amount: auto
+    process_ID: auto
+    payment_date: auto
