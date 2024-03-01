@@ -1,11 +1,10 @@
 from django.db import models
 from orders.models import Order
 
-PAYMENT_TYPE = {
-    'Credit Card': 'Credit Card',
-    'Wire Transfer/EFT': 'Wire Transfer/EFT',
-    'Cash on Delivery': 'Cash on Delivery'
-}
+PAYMENT_TYPE = (
+    ('Credit Card', 'Credit Card'),
+    ('Wire Transfer/EFT', 'Wire Transfer/EFT'),
+    ('Cash on Delivery', 'Cash on Delivery'))
 
 class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
