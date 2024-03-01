@@ -37,20 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
-    'tags',
-    'categories',
-    'products',
-    'reviews',
-    'discounts',
-    'orders',
-    'orderdetails',
-    'invoices',
-    'payments',
-    'warehouses',
-    'stocks',
-    'shippings',
-    'rest_framework',
+    'users.apps.UsersConfig',
+    'tags.apps.TagsConfig',
+    'categories.apps.CategoriesConfig',
+    'products.apps.ProductsConfig',
+    'reviews.apps.ReviewsConfig',
+    'discounts.apps.DiscountsConfig',
+    'orders.apps.OrdersConfig',
+    'orderdetails.apps.OrderdetailsConfig',
+    'invoices.apps.InvoicesConfig',
+    'payments.apps.PaymentsConfig',
+    'warehouses.apps.WarehousesConfig',
+    'stocks.apps.StocksConfig',
+    'shippings.apps.ShippingsConfig',
+    "gqlauth",
 ]
 
 MIDDLEWARE = [
@@ -59,9 +59,27 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'gqlauth.core.middlewares.django_jwt_middleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+from gqlauth.settings_type import GqlAuthSettings
+
+GQL_AUTH = GqlAuthSettings(
+    LOGIN_REQUIRE_CAPTCHA=False,
+    REGISTER_REQUIRE_CAPTCHA=False,
+    ALLOW_LOGIN_NOT_VERIFIED=True,
+)
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 ROOT_URLCONF = 'core.urls'
 
