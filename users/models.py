@@ -1,15 +1,12 @@
+# users/models.py
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class Account(models.Model):
-    username = models.CharField(unique=True, max_length=150)
-    email = models.EmailField()
-    password = models.CharField(max_length=128)
-    fullname = models.CharField(max_length=255)
-    phonenumber = models.CharField(max_length=20)
-    address = models.TextField()
+class CustomUser(AbstractUser):
 
-    class Meta:
-        db_table = "users"
+    email = models.EmailField(blank=False, max_length=254, verbose_name="email address")
+    is_member = models.BooleanField(default=True)
+    is_business = models.BooleanField(blank=True, null=True)
 
-    def __str__(self) -> str:
-        return self.username
+    USERNAME_FIELD = "username"
+    EMAIL_FIELD = "email"
